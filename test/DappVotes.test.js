@@ -23,8 +23,8 @@ describe('Contracts', () => {
     await contract.deployed();
   });
 
-  describe('Poll Management', () => {
-    it('should confirm poll creation success', async () => {
+  describe('Poll Test', () => {
+    it('poll creation success', async () => {
         result = await contract.listPolls();
         expect(result).to.have.lengthOf(0);
 
@@ -38,7 +38,7 @@ describe('Contracts', () => {
         expect(result.creator).to.be.equal(deployer.address);
     });
 
-    it('should confirm poll modify success', async () => {
+    it('poll modify success', async () => {
       await contract.createPoll(name, info, startTime, endTime);
 
       result = await contract.getPollDetails(pollId);
@@ -50,7 +50,7 @@ describe('Contracts', () => {
       expect(result.name).to.be.equal('New Title');
     });
 
-    it('should confirm poll deletion success', async () => {
+    it('poll deletion success', async () => {
       await contract.createPoll(name, info, startTime, endTime);
 
       result = await contract.listPolls();
@@ -69,4 +69,52 @@ describe('Contracts', () => {
     });
   });
 
+  describe('Participant Test', () => {
+    beforeEach(async () => {
+      await contract.createPoll(name, info, startTime, endTime);
+    });
+
+    it('add participant success', async () => {
+      result = await contract.getPollDetails(pollId);
+      expect(result.contestantCount.toNumber()).to.be.equal(0);
+
+      await contract.connect(contestant1).addContestant(pollId, name1, avatar1);
+      await contract.connect(contestant2).addContestant(pollId, name2, avatar2);
+
+      result = await contract.getPollDetails(pollId);
+      expect(result.contestantCount.toNumber()).to.be.equal(2);
+
+      result = await contract.listContestants(pollId);
+      expect(result).to.have.lengthOf(2);
+    });
+  });
+
+  describe('Voting Test', () => {
+    beforeEach(async () => {
+      await contract.createPoll(name, info, startTime, endTime);
+      await contract.connect(contestant1).addContestant(pollId, name1, avatar1);
+      await contract.connect(contestant2).addContestant(pollId, name2, avatar2);
+    });
+
+
+    it('voting success', async () => {
+      result = await contract.getPollDetails(pollId);
+      expect(result.voteCount.toNumber()).to.be.equal(0);
+
+      await contract.connect(voter1).castVote(pollId, contestantId);
+      await contract.connect(voter2).castVote(pollId, contestantId);
+
+      result = await contract.getPollDetails(pollId);
+      expect(result.voteCount.toNumber()).to.be.equal(2);
+      expect(result.voters).to.have.lengthOf(2);
+      expect(result.images).to.have.lengthOf(2);
+
+      result = await contract.listContestants(pollId);
+      expect(result).to.have.lengthOf(2);
+
+      result = await contract.getContestantDetails(pollId, contestantId);
+      expect(result.voters).to.have.lengthOf(2);
+      expect(result.participant).to.be.equal(contestant1.address);
+    });
+  });
 });

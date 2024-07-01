@@ -110,9 +110,69 @@ contract DappVotes {
         }
     }
 
-
     function getPollDetails(uint id) public view returns (Poll memory) {
         return polls[id];
+    }
+
+    function addContestant(uint id, string memory name, string memory picture) public {
+        require(pollExists[id], "Poll does not exist");
+        require(bytes(name).length > 0, "Name cannot be empty");
+        require(bytes(picture).length > 0, "Picture cannot be empty");
+        require(polls[id].voteCount < 1, "Poll already has votes");
+        require(!hasContested[id][msg.sender], "Already contested");
+
+        contestantCounter.increment();
+
+        Contestant memory newContestant;
+        newContestant.id = contestantCounter.current();
+        newContestant.picture = picture;
+        newContestant.contestantName = name;
+        newContestant.participant = msg.sender;
+
+        contestants[id][newContestant.id] = newContestant;
+        hasContested[id][msg.sender] = true;
+        polls[id].images.push(picture);
+        polls[id].contestantCount++;
+    }
+
+    function getContestantDetails(uint id, uint contestantId) public view returns (Contestant memory) {
+        return contestants[id][contestantId];
+    }
+
+    function listContestants(uint id) public view returns (Contestant[] memory availableContestants) {
+        uint activeCount;
+        for (uint i = 1; i <= contestantCounter.current(); i++) {
+            if (contestants[id][i].id == i) activeCount++;
+        }
+
+        availableContestants = new Contestant[](activeCount);
+        uint idx;
+
+        for (uint i = 1; i <= contestantCounter.current(); i++) {
+            if (contestants[id][i].id == i) {
+                availableContestants[idx++] = contestants[id][i];
+            }
+        }
+    }
+
+    function castVote(uint id, uint contestantId) public {
+        require(pollExists[id], "Poll does not exist");
+        require(!hasVoted[id][msg.sender], "Already voted");
+        require(!polls[id].isDeleted, "Poll not available");
+        require(polls[id].contestantCount > 1, "Not enough contestants");
+        require(
+            getCurrentTime() >= polls[id].startTime && getCurrentTime() < polls[id].endTime,
+            "Voting period invalid"
+        );
+
+        polls[id].voteCount++;
+        polls[id].voters.push(msg.sender);
+
+        contestants[id][contestantId].voteCount++;
+        contestants[id][contestantId].voters.push(msg.sender);
+        hasVoted[id][msg.sender] = true;
+
+        emit VoteCast(msg.sender, getCurrentTime());
     }
 
     function getCurrentTime() internal view returns (uint256) {

@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\Users\\ngtie\\OneDrive\\Desktop\\DACNTT\\DuAnCNTT\\contracts\\DappVotes.sol": {
-      "lastModificationDate": 1719845693941,
-      "contentHash": "e5e1290835a27590a56e35db460d3909",
+      "lastModificationDate": 1719852967987,
+      "contentHash": "99e84b867949a4691e790bd163e577e4",
       "sourceName": "contracts/DappVotes.sol",
       "solcConfig": {
         "version": "0.8.17",
