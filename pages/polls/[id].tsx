@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { globalActions } from '@/store/globalSlices'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import { getContestants, getPoll } from '@/services/blockchain'
+import { listContestants, getPollDetails } from '@/services/blockchain'
 
 export default function Polls({
   pollData,
@@ -34,7 +34,7 @@ export default function Polls({
     <>
       {poll && (
         <Head>
-          <title>Poll | {poll.title}</title>
+          <title>Poll | {poll.name}</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
       )}
@@ -63,8 +63,8 @@ export default function Polls({
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   const { id } = context.query
-  const pollData = await getPoll(Number(id))
-  const contestantData = await getContestants(Number(id))
+  const pollData = await getPollDetails(Number(id))
+  const contestantData = await listContestants(Number(id))
 
   return {
     props: {

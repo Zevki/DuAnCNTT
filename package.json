@@ -1,9 +1,9 @@
 {
-  "name": "starter_kit",
-  "description": "A Next.js starter that includes all you need to build amazing projects",
+  "name": "td",
+  "description": "Voting App",
   "version": "1.0.0",
   "private": true,
-  "author": "darlington gospel<darlingtongospel@gmail.com>",
+  "author": "td",
   "license": "MIT",
   "keywords": [
     "nextjs",
@@ -16,8 +16,7 @@
     "start": "next start",
     "export": "next build && next export",
     "lint": "next lint",
-    "format": "prettier --ignore-path .gitignore \"pages/**/*.+(ts|js|tsx)\" --write",
-    "postinstall": "husky install"
+    "format": "prettier --ignore-path .gitignore \"pages/**/*.+(ts|js|tsx)\" --write"
   },
   "lint-staged": {
     "./src/**/*.{ts,js,jsx,tsx}": [
@@ -42,7 +41,6 @@
     "@emotion/styled": "11.10.5",
     "@ethersproject/abi": "^5.4.7",
     "@ethersproject/providers": "^5.4.7",
-    "@faker-js/faker": "8.0.2",
     "@nomicfoundation/hardhat-chai-matchers": "^1.0.0",
     "@nomicfoundation/hardhat-network-helpers": "^1.0.0",
     "@nomicfoundation/hardhat-toolbox": "^2.0.0",
