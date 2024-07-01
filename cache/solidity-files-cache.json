@@ -1,9 +1,9 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "C:\\Users\\tqt24\\OneDrive\\Desktop\\DACNTT\\dappVote\\contracts\\DappVotes.sol": {
-      "lastModificationDate": 1719570654875,
-      "contentHash": "6180be44915d3cff3a5d400bfd4e0324",
+    "C:\\Users\\ngtie\\OneDrive\\Desktop\\DACNTT\\DuAnCNTT\\contracts\\DappVotes.sol": {
+      "lastModificationDate": 1719841171490,
+      "contentHash": "9b88056ecb290a7d78c21bb3fb7db950",
       "sourceName": "contracts/DappVotes.sol",
       "solcConfig": {
         "version": "0.8.17",
@@ -38,80 +38,8 @@
         "DappVotes"
       ]
     },
-    "C:\\Users\\tqt24\\OneDrive\\Desktop\\DACNTT\\dappVote\\node_modules\\@openzeppelin\\contracts\\utils\\Counters.sol": {
-      "lastModificationDate": 1718974001268,
-      "contentHash": "74654e3ae5d7f39555055dfe244dab7a",
-      "sourceName": "@openzeppelin/contracts/utils/Counters.sol",
-      "solcConfig": {
-        "version": "0.8.17",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "Counters"
-      ]
-    },
-    "C:\\Users\\tqt24\\OneDrive\\Desktop\\DACNTT\\copy\\contracts\\DappVotes.sol": {
-      "lastModificationDate": 1719571817120,
-      "contentHash": "02d6b81485e909d886e9d9dc298942c8",
-      "sourceName": "contracts/DappVotes.sol",
-      "solcConfig": {
-        "version": "0.8.17",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts/utils/Counters.sol"
-      ],
-      "versionPragmas": [
-        ">=0.7.0 <0.9.0"
-      ],
-      "artifacts": [
-        "DappVotes"
-      ]
-    },
-    "C:\\Users\\tqt24\\OneDrive\\Desktop\\DACNTT\\copy\\node_modules\\@openzeppelin\\contracts\\utils\\Counters.sol": {
-      "lastModificationDate": 1718974001268,
+    "C:\\Users\\ngtie\\OneDrive\\Desktop\\DACNTT\\DuAnCNTT\\node_modules\\@openzeppelin\\contracts\\utils\\Counters.sol": {
+      "lastModificationDate": 1719123582398,
       "contentHash": "74654e3ae5d7f39555055dfe244dab7a",
       "sourceName": "@openzeppelin/contracts/utils/Counters.sol",
       "solcConfig": {

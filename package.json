@@ -1,15 +1,10 @@
 {
-  "name": "td",
-  "description": "Voting App",
+  "name": "dapp_evoting",
+  "description": "EVoting DApp",
   "version": "1.0.0",
   "private": true,
-  "author": "td",
+  "author": "",
   "license": "MIT",
-  "keywords": [
-    "nextjs",
-    "starter",
-    "typescript"
-  ],
   "scripts": {
     "dev": "next",
     "build": "next build",
