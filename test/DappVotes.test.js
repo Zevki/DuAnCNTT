@@ -37,6 +37,36 @@ describe('Contracts', () => {
         expect(result.name).to.be.equal(name);
         expect(result.creator).to.be.equal(deployer.address);
     });
+
+    it('should confirm poll modify success', async () => {
+      await contract.createPoll(name, info, startTime, endTime);
+
+      result = await contract.getPollDetails(pollId);
+      expect(result.name).to.be.equal(name);
+
+      await contract.modifyPoll(pollId, 'New Title', info, startTime, endTime);
+
+      result = await contract.getPollDetails(pollId);
+      expect(result.name).to.be.equal('New Title');
+    });
+
+    it('should confirm poll deletion success', async () => {
+      await contract.createPoll(name, info, startTime, endTime);
+
+      result = await contract.listPolls();
+      expect(result).to.have.lengthOf(1);
+
+      result = await contract.getPollDetails(pollId);
+      expect(result.isDeleted).to.be.equal(false);
+
+      await contract.removePoll(pollId);
+
+      result = await contract.listPolls();
+      expect(result).to.have.lengthOf(0);
+
+      result = await contract.getPollDetails(pollId);
+      expect(result.isDeleted).to.be.equal(true);
+    });
   });
 
 });

@@ -66,6 +66,34 @@ contract DappVotes {
         pollExists[newPoll.id] = true;
     }
 
+    function modifyPoll(
+        uint id,
+        string memory name,
+        string memory info,
+        uint startTime,
+        uint endTime
+    ) public {
+        require(pollExists[id], "Poll does not exist");
+        require(polls[id].creator == msg.sender, "Not authorized");
+        require(bytes(name).length > 0, "Name cannot be empty");
+        require(bytes(info).length > 0, "Description cannot be empty");
+        require(!polls[id].isDeleted, "Poll already deleted");
+        require(polls[id].voteCount < 1, "Poll already has votes");
+        require(endTime > startTime, "End time must be greater than start time");
+
+        polls[id].name = name;
+        polls[id].info = info;
+        polls[id].startTime = startTime;
+        polls[id].endTime = endTime;
+    }
+
+    function removePoll(uint id) public {
+        require(pollExists[id], "Poll does not exist");
+        require(polls[id].creator == msg.sender, "Not authorized");
+        require(polls[id].voteCount < 1, "Poll already has votes");
+        polls[id].isDeleted = true;
+    }
+
     function listPolls() public view returns (Poll[] memory availablePolls) {
         uint activeCount;
         for (uint i = 1; i <= pollCounter.current(); i++) {
@@ -81,6 +109,7 @@ contract DappVotes {
             }
         }
     }
+
 
     function getPollDetails(uint id) public view returns (Poll memory) {
         return polls[id];
