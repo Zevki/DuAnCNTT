@@ -8,14 +8,14 @@ export const globalActions = {
     setCreateModal: (state: GlobalState, action: PayloadAction<string>) => {
         state.createModal = action.payload
     },
-    setUpdateModal: (state: GlobalState, action: PayloadAction<string>) => {
-        state.updateModal = action.payload
+    setModifyModal: (state: GlobalState, action: PayloadAction<string>) => {
+        state.modifyModal = action.payload
     },
-    setDeleteModal: (state: GlobalState, action: PayloadAction<string>) => {
-        state.deleteModal = action.payload
+    setRemoveModal: (state: GlobalState, action: PayloadAction<string>) => {
+        state.removeModal = action.payload
     },
-    setContestModal: (state: GlobalState, action: PayloadAction<string>) => {
-        state.contestModal = action.payload
+    setAddParticipantModal: (state: GlobalState, action: PayloadAction<string>) => {
+        state.addParticipantModal = action.payload
     },
     setPolls: (state: GlobalState, action: PayloadAction<PollStruct[]>) => {
         state.polls = action.payload
