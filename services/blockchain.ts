@@ -86,6 +86,50 @@ const createPoll = async (data: PollParams) => {
   }
 }
 
+const modifyPoll = async (id: number, data: PollParams) => {
+  if (!ethereum) {
+    reportError('Please install Metamask')
+    return Promise.reject(new Error('Metamask not installed'))
+  }
+
+  try {
+    const contract = await getEthereumContract()
+    const { name, info, startTime, endTime } = data
+    const tx = await contract.modifyPoll(id, name, info, startTime, endTime)
+
+    await tx.wait()
+
+    const poll = await getPollDetails(id)
+    store.dispatch(setPoll(poll))
+
+    return Promise.resolve(tx)
+  } catch (error) {
+    reportError(error)
+    return Promise.reject(error)
+  }
+}
+
+const removePoll = async (id: number) => {
+  if (!ethereum) {
+    reportError('Please install Metamask')
+    return Promise.reject(new Error('Metamask not installed'))
+  }
+
+  try {
+    const contract = await getEthereumContract()
+    const tx = await contract.removePoll(id)
+
+    await tx.wait()
+
+    const poll = await getPollDetails(id)
+    store.dispatch(setPoll(poll))
+
+    return Promise.resolve(tx)
+  } catch (error) {
+    reportError(error)
+    return Promise.reject(error)
+  }
+}
 
 const listPolls = async (): Promise<PollStruct[]> => {
   const contract = await getEthereumContract()
@@ -128,4 +172,6 @@ export {
   createPoll,
   listPolls,
   getPollDetails,
+  modifyPoll,
+  removePoll,
 }
