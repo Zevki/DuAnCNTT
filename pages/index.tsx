@@ -28,7 +28,7 @@ export default function Home({ pollsData }: { pollsData: PollStruct[] }) {
       <div className="min-h-screen relative backdrop-blur">
         <div
           className="absolute inset-0 before:absolute before:inset-0
-        before:w-full before:h-full before:bg-[url('/assets/images/background.png')]
+        before:w-full before:h-full before:bg-[url('/assets/background.png')]
         before:blur-sm before:z-[-1] before:bg-no-repeat before:bg-cover"
         />
 
