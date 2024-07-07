@@ -143,6 +143,71 @@ const getPollDetails = async (id: number): Promise<PollStruct> => {
   return structurePolls([poll])[0]
 }
 
+const addContestant = async (id: number, name: string, image: string) => {
+  if (!ethereum) {
+    reportError('Please install Metamask')
+    return Promise.reject(new Error('Metamask not installed'))
+  }
+
+  try {
+    const contract = await getEthereumContract()
+    const tx = await contract.addContestant(id, name, image)
+    await tx.wait()
+
+    const poll = await getPollDetails(id)
+    store.dispatch(setPoll(poll))
+
+    const contestants = await listContestants(id)
+    store.dispatch(setContestants(contestants))
+
+    return Promise.resolve(tx)
+  } catch (error) {
+    reportError(error)
+    return Promise.reject(error)
+  }
+}
+
+const castVote = async (id: number, cid: number) => {
+  if (!ethereum) {
+    reportError('Please install Metamask')
+    return Promise.reject(new Error('Metamask not installed'))
+  }
+
+  try {
+    const contract = await getEthereumContract()
+    const tx = await contract.castVote(id, cid)
+    await tx.wait()
+
+    const poll = await getPollDetails(id)
+    store.dispatch(setPoll(poll))
+
+    const contestants = await listContestants(id)
+    store.dispatch(setContestants(contestants))
+
+    return Promise.resolve(tx)
+  } catch (error) {
+    reportError(error)
+    return Promise.reject(error)
+  }
+}
+
+const listContestants = async (id: number): Promise<ContestantStruct[]> => {
+  const contract = await getEthereumContract()
+  const contestants = await contract.listContestants(id)
+  return structureContestants(contestants)
+}
+
+const structureContestants = (contestants: ContestantStruct[]): ContestantStruct[] =>
+  contestants
+    .map((contestant) => ({
+      id: Number(contestant.id),
+      picture: contestant.picture,
+      contestantName: contestant.contestantName,
+      participant: contestant.participant.toLowerCase(),
+      voteCount: Number(contestant.voteCount),
+      voters: contestant.voters.map((voter: string) => voter.toLowerCase()),
+    }))
+    .sort((a, b) => b.voteCount - a.voteCount)
 
 const structurePolls = (polls: PollStruct[]): PollStruct[] =>
   polls
@@ -174,4 +239,7 @@ export {
   getPollDetails,
   modifyPoll,
   removePoll,
+  addContestant,
+  listContestants,
+  castVote,
 }

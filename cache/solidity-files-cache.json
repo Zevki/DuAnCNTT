@@ -1,8 +1,8 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "C:\\Users\\ngtie\\OneDrive\\Desktop\\DACNTT\\DuAnCNTT\\contracts\\DappVotes.sol": {
-      "lastModificationDate": 1719852967987,
+    "C:\\Users\\tqt24\\OneDrive\\Desktop\\DACNTT\\copy\\DuAnCNTT\\contracts\\DappVotes.sol": {
+      "lastModificationDate": 1719914261785,
       "contentHash": "99e84b867949a4691e790bd163e577e4",
       "sourceName": "contracts/DappVotes.sol",
       "solcConfig": {
@@ -38,8 +38,8 @@
         "DappVotes"
       ]
     },
-    "C:\\Users\\ngtie\\OneDrive\\Desktop\\DACNTT\\DuAnCNTT\\node_modules\\@openzeppelin\\contracts\\utils\\Counters.sol": {
-      "lastModificationDate": 1719123582398,
+    "C:\\Users\\tqt24\\OneDrive\\Desktop\\DACNTT\\copy\\DuAnCNTT\\node_modules\\@openzeppelin\\contracts\\utils\\Counters.sol": {
+      "lastModificationDate": 1718788137670,
       "contentHash": "74654e3ae5d7f39555055dfe244dab7a",
       "sourceName": "@openzeppelin/contracts/utils/Counters.sol",
       "solcConfig": {
