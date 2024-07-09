@@ -33,7 +33,7 @@ const Details: React.FC<{ poll: PollStruct }> = ({ poll }) => {
             className="flex items-center justify-center w-[133px] h-[32px]
                  py-[20px] rounded-[10px] gap-[12px]"
           >
-            <div className="w-[32px] h-[32px] rounded-full bg-[#1B5CFE]" />
+            Creator:
             <p className="text-[14px] font-[500px]">
               {truncate({ text: poll.creator, startChars: 4, endChars: 4, maxLength: 11 })}
             </p>
@@ -85,7 +85,7 @@ const Details: React.FC<{ poll: PollStruct }> = ({ poll }) => {
               border border-gray-400 bg-white hover:bg-opacity-20 hover:text-white py-2"
               onClick={()=>dispatch(setAddParticipantModal('scale-100'))}
             >
-              Contest
+              Contestant Register
             </button>
           )}
         </div>
