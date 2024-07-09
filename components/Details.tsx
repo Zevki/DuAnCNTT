@@ -34,7 +34,8 @@ const Details: React.FC<{ poll: PollStruct }> = ({ poll }) => {
                  py-[20px] rounded-[10px] gap-[12px]"
           >
             Creator:
-            <p className="text-[14px] font-[500px]">
+            <p className="h-[35px] bg-[#3C5B6F] rounded-full py-[4px] px-[12px]
+                    text-[18px] font-[400px]">
               {truncate({ text: poll.creator, startChars: 4, endChars: 4, maxLength: 11 })}
             </p>
           </div>
