@@ -74,7 +74,7 @@ const ModifyPoll: React.FC<{ pollData: PollStruct }> = ({ pollData }) => {
       className={`fixed top-0 left-0 w-screen h-screen flex items-center justify-center
     bg-black bg-opacity-50 transform z-50 transition-transform duration-300 ${modifyModal}`}
     >
-      <div className="bg-[#0c0c10] text-[#BBBBBB] shadow-lg shadow-[#1B5CFE] rounded-xl w-11/12 md:w-2/5 h-7/12 p-6">
+      <div className="bg-[#BBBBBB] text-[#0c0c10] shadow-lg shadow-[#1B5CFE] rounded-xl w-11/12 md:w-2/5 h-7/12 p-6">
         <div className="flex flex-col">
           <div className="flex flex-row justify-between items-center">
             <p className="font-semibold">Edit Poll</p>
@@ -151,8 +151,8 @@ const ModifyPoll: React.FC<{ pollData: PollStruct }> = ({ pollData }) => {
             </div>
 
             <button
-              className="h-[48px] w-full block mt-2 px-3 rounded-full text-sm font-bold
-              transition-all duration-300 bg-[#1B5CFE] hover:bg-blue-500"
+              className="h-[48px] w-full block mt-10 px-3 rounded-full text-sm font-bold
+              transition-all duration-300 bg-[#1B5CFE] text-[#BBBBBB] hover:bg-blue-500"
             >
               Update Poll
             </button>

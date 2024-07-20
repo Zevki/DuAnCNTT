@@ -45,14 +45,14 @@ const Details: React.FC<{ poll: PollStruct }> = ({ poll }) => {
               className="py-[6px] px-[12px] border border-gray-400 bg-white bg-opacity-20
               rounded-full text-[12px] md:text-[16px]"
             >
-              {poll.voteCount} voteCount
+              {poll.voteCount} Votes
             </button>
 
             <button
               className="py-[6px] px-[12px] 
               border border-gray-400 bg-white bg-opacity-20 rounded-full text-[12px] md:text-[16px]"
             >
-              {poll.contestantCount} contestantCount
+              {poll.contestantCount} Contestants
             </button>
 
             {wallet && wallet === poll.creator && poll.voteCount < 1 && (
@@ -82,8 +82,8 @@ const Details: React.FC<{ poll: PollStruct }> = ({ poll }) => {
 
           {poll.voteCount < 1 && (
             <button
-              className="text-black h-[45px] w-[148px] rounded-full transition-all duration-300
-              border border-gray-400 bg-white hover:bg-opacity-20 hover:text-white py-2"
+              className="text-[30px] font-bold text-black h-[80px] w-[300px] rounded-full transition-all duration-300
+              border border-gray-400 bg-white hover:bg-opacity-20 hover:text-white py-2 mt-6"
               onClick={()=>dispatch(setAddParticipantModal('scale-100'))}
             >
               Contestant Register

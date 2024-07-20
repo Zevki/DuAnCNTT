@@ -144,7 +144,7 @@ const CreatePoll: React.FC = () => {
             </div>
 
             <button
-              className="h-[48px] w-full block mt-8 px-3 rounded-full text-sm font-bold
+              className="h-[48px] w-full block mt-10 px-3 rounded-full text-sm font-bold
               transition-all duration-300 bg-[#1B5CFE] text-[#BBBBBB] hover:bg-blue-500"
             >
               Create Poll

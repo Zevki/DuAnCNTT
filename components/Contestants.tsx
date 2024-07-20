@@ -13,7 +13,7 @@ const Contestants: React.FC<{ contestants: ContestantStruct[]; poll: PollStruct 
 }) => {
   return (
     <div className="space-y-2">
-      <h1 className="text-center text-[48px] font-[600px]">Contestants</h1>
+      {/* <h1 className="text-center text-[48px] font-[600px]">Contestants</h1> */}
 
       <div className="grid grid-cols-1 xl:grid-cols-2 pb-7 gap-[62px] sm:w-2/3 xl:w-11/12 mx-auto">
         {contestants.map((contestant, i) => (
@@ -48,11 +48,11 @@ const Contestant: React.FC<{ contestant: ContestantStruct; poll: PollStruct }> =
     )
   }
   return (
-    <div className="flex justify-start items-center space-x-2 md:space-x-8 mt-5 md:mx-auto">
+    <div className="flex justify-start items-center space-x-2 md:space-x-8 mt-20 md:mx-auto">
       <div className="w-[187px] sm:w-[324px] h-[229px] sm:h-[180px] rounded-[24px] overflow-hidden">
         <Image
           className="w-full h-full object-cover"
-          width={3000}
+          width={3500}
           height={500}
           src={contestant.picture}
           alt={contestant.contestantName}
@@ -94,11 +94,11 @@ const Contestant: React.FC<{ contestant: ContestantStruct; poll: PollStruct }> =
           {wallet && contestant.voters.includes(wallet) ? 'Voted' : 'Vote'}
         </button>
 
-        <div className="w-[86px] h-[32px] flex items-center justify-center gap-3">
+        <div className="w-[90px] h-[32px] flex items-center justify-center gap-3">
           <div className="w-[32px] h-[32px] rounded-[9px] py-[8px] px-[9px] bg-[#0E1933]">
             <BiUpvote size={20} className="text-[#1B5CFE]" />
           </div>
-          <p className="text-[14px] font-[600px]">{contestant.voteCount} vote</p>
+          <p className="text-[14px] font-[600px]">{contestant.voteCount} votes</p>
         </div>
       </div>
     </div>
