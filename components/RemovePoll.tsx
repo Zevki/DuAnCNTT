@@ -55,8 +55,8 @@ const RemovePoll: React.FC<{ poll: PollStruct }> = ({ poll }) => {
           <div className="flex flex-col justify-center items-center rounded-xl mt-5 mb-5">
             <div className="flex flex-col justify-center items-center rounded-xl my-5 space-y-2">
               <BsTrash3Fill className="text-red-600" size={50} />
-              <h4 className="text-[22.65px]">Delete Poll</h4>
-              <p className="text-[14px]">Are you sure you want to delete this question?</p>
+              <h4 className="text-[22.65px]">Remove Poll</h4>
+              <p className="text-[14px]">Are you sure you want to remove this poll?</p>
               <small className="text-xs italic">{poll?.name}</small>
             </div>
 
@@ -65,7 +65,7 @@ const RemovePoll: React.FC<{ poll: PollStruct }> = ({ poll }) => {
               transition-all duration-300 bg-red-600 hover:bg-red-500"
               onClick={handleRemove}
             >
-              Delete Poll
+              Remove Poll
             </button>
           </div>
         </div>
