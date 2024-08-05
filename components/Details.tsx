@@ -11,8 +11,7 @@ const Details: React.FC<{ poll: PollStruct }> = ({ poll }) => {
   const { wallet } = useSelector((states: RootState) => states.globalStates)
 
   return (
-    <>
-      <div
+    <div
         className="flex flex-col items-center justify-center space-y-6
         mt-5 w-full md:max-w-[736px] mx-auto"
       >
@@ -91,7 +90,6 @@ const Details: React.FC<{ poll: PollStruct }> = ({ poll }) => {
           )}
         </div>
       </div>
-    </>
   )
 }
 

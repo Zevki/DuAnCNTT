@@ -27,6 +27,7 @@ contract DappVotes {
         uint id;
         string picture;
         string contestantName;
+        string achievement;
         address participant;
         uint voteCount;
         address[] voters;
@@ -114,10 +115,11 @@ contract DappVotes {
         return polls[id];
     }
 
-    function addContestant(uint id, string memory name, string memory picture) public {
+    function addContestant(uint id, string memory name, string memory picture, string memory achievement) public {
         require(pollExists[id], "Poll does not exist");
         require(bytes(name).length > 0, "Name cannot be empty");
         require(bytes(picture).length > 0, "Picture cannot be empty");
+        require(bytes(achievement).length > 0, "Achievement cannot be empty");
         require(polls[id].voteCount < 1, "Poll already has votes");
         require(!hasContested[id][msg.sender], "Already contested");
 
@@ -127,6 +129,7 @@ contract DappVotes {
         newContestant.id = contestantCounter.current();
         newContestant.picture = picture;
         newContestant.contestantName = name;
+        newContestant.achievement = achievement;
         newContestant.participant = msg.sender;
 
         contestants[id][newContestant.id] = newContestant;

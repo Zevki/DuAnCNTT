@@ -15,7 +15,7 @@ const Contestants: React.FC<{ contestants: ContestantStruct[]; poll: PollStruct 
     <div className="space-y-2">
       {/* <h1 className="text-center text-[48px] font-[600px]">Contestants</h1> */}
 
-      <div className="grid grid-cols-1 xl:grid-cols-2 pb-7 gap-[62px] sm:w-2/3 xl:w-11/12 mx-auto">
+      <div className="grid grid-cols-1 xl:grid-cols-1 pb-7 gap-[62px] sm:w-2/3 xl:w-11/12 mx-auto">
         {contestants.map((contestant, i) => (
           <Contestant poll={poll} contestant={contestant} key={i} />
         ))}
@@ -47,9 +47,18 @@ const Contestant: React.FC<{ contestant: ContestantStruct; poll: PollStruct }> =
       }
     )
   }
+
+  // Convert newlines in the achievement text to HTML <br> elements
+  const formattedAchievement = contestant.achievement.split('\n').map((line, index) => (
+    <React.Fragment key={index}>
+      {line}
+      <br />
+    </React.Fragment>
+  ))
+
   return (
     <div className="flex justify-start items-center space-x-2 md:space-x-8 mt-20 md:mx-auto">
-      <div className="w-[187px] sm:w-[324px] h-[229px] sm:h-[180px] rounded-[24px] overflow-hidden">
+      <div className="w-[187px] sm:w-[400px] h-[229px] sm:h-[350px] rounded-[24px] overflow-hidden">
         <Image
           className="w-full h-full object-cover"
           width={3500}
@@ -60,19 +69,25 @@ const Contestant: React.FC<{ contestant: ContestantStruct; poll: PollStruct }> =
       </div>
 
       <div
-        className="bg-[#151515] h-[229px] w-[186px] sm:w-[253px] sm:h-fit rounded-[24px]
-        space-y-2 flex justify-center items-center flex-col pt-2 pb-2 px-3"
+        className="w-full h-[257px] gap-[1px] rounded-[24px] sm:h-fit space-y-5 
+        flex justify-center items-center flex-col pt-2 pb-2 px-3
+        md:w-[600px] bg-[#151515] px-[15px] py-[18px] md:px-[22px]"
       >
-        <h1 className="text-[16px] sm:text-[20px] font-[600px]">{contestant.contestantName}</h1>
+        <h1 className="text-[24px] sm:text-[40px] font-[600px] mb-0 font-bold">
+          {contestant.contestantName}
+        </h1>
 
-        <div
-          className="flex items-center justify-center w-full
-          rounded-[10px] space-x-2"
-        >
-          <p className="text-[14px] font-[500px]">
+        <div className="flex items-center justify-center rounded-[20px] space-x-2 
+        bg-[#3C5B6F] rounded-full py-[4px] px-[12px]">
+          <p className="text-[20px] font-[500px]">
             {truncate({ text: contestant.participant, startChars: 4, endChars: 4, maxLength: 11 })}
           </p>
         </div>
+
+        <hr className="w-full sm:w-[450px] border-t-4 border-gray-400 mt-3" />
+
+        {/* Achievement with line breaks */}
+        <p className="text-[20px] font-[500px] text-center">{formattedAchievement}</p>
 
         <button
           onClick={voteContestant}
@@ -83,7 +98,7 @@ const Contestant: React.FC<{ contestant: ContestantStruct; poll: PollStruct }> =
                 Date.now() >= poll.endTime
               : true
           }
-          className={`w-[158px] sm:w-[213px] h-[48px] rounded-[30.5px] ${
+          className={`font-bold w-[158px] sm:w-[213px] h-[48px] rounded-[30.5px] ${
             (wallet && poll.voters.includes(wallet)) ||
             Date.now() < poll.startTime ||
             Date.now() >= poll.endTime

@@ -73,7 +73,7 @@ const createPoll = async (data: PollParams) => {
   try {
     const contract = await getEthereumContract()
     const { name, info, startTime, endTime } = data
-    const tx = await contract.createPoll( name, info, startTime, endTime)
+    const tx = await contract.createPoll(name, info, startTime, endTime)
 
     await tx.wait()
     const polls = await listPolls()
@@ -143,7 +143,8 @@ const getPollDetails = async (id: number): Promise<PollStruct> => {
   return structurePolls([poll])[0]
 }
 
-const addContestant = async (id: number, name: string, image: string) => {
+// eslint-disable-next-line max-params
+const addContestant = async (id: number, name: string, image: string, achievement: string) => {
   if (!ethereum) {
     reportError('Please install Metamask')
     return Promise.reject(new Error('Metamask not installed'))
@@ -151,7 +152,7 @@ const addContestant = async (id: number, name: string, image: string) => {
 
   try {
     const contract = await getEthereumContract()
-    const tx = await contract.addContestant(id, name, image)
+    const tx = await contract.addContestant(id, name, image, achievement)
     await tx.wait()
 
     const poll = await getPollDetails(id)
@@ -203,6 +204,7 @@ const structureContestants = (contestants: ContestantStruct[]): ContestantStruct
       id: Number(contestant.id),
       picture: contestant.picture,
       contestantName: contestant.contestantName,
+      achievement: contestant.achievement,
       participant: contestant.participant.toLowerCase(),
       voteCount: Number(contestant.voteCount),
       voters: contestant.voters.map((voter: string) => voter.toLowerCase()),

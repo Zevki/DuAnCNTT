@@ -14,6 +14,7 @@ const AddParticipant: React.FC<{ poll: PollStruct }> = ({ poll }) => {
   const [contestant, setContestant] = useState({
     name: '',
     image: '',
+    achievement: '',
   })
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -27,11 +28,11 @@ const AddParticipant: React.FC<{ poll: PollStruct }> = ({ poll }) => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
 
-    if (!contestant.name || !contestant.image) return
+    if (!contestant.name || !contestant.image || !contestant.achievement) return
 
     await toast.promise(
       new Promise<void>((resolve, reject) => {
-        addContestant(poll.id, contestant.name, contestant.image)
+        addContestant(poll.id, contestant.name, contestant.image, contestant.achievement)
           .then((tx) => {
             closeModal()
             console.log(tx)
@@ -52,6 +53,7 @@ const AddParticipant: React.FC<{ poll: PollStruct }> = ({ poll }) => {
     setContestant({
       name: '',
       image: '',
+      achievement: '',
     })
   }
 
@@ -96,6 +98,19 @@ const AddParticipant: React.FC<{ poll: PollStruct }> = ({ poll }) => {
                 required
               />
             </div>
+
+            {/* Mới thêm */}
+            <div className="py-4 w-full border border-[#212D4A] rounded-xl flex items-center px-4 h-20 mt-2">
+              <textarea
+                placeholder="Achievement"
+                className="bg-transparent outline-none w-full placeholder-[#929292] text-sm"
+                name="achievement"
+                value={contestant.achievement}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            {/* Mới thêm */}
 
             <button
               className="h-[48px] w-full block mt-2 px-3 rounded-full text-sm font-bold
